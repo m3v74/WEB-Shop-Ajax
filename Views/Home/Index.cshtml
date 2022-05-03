@@ -1,0 +1,109 @@
+﻿@using WEB_Shop_Ajax.Models
+@model IndexViewModel
+
+@*подключаем все tag-хелперы*@
+@addTagHelper *, WEB-Shop-Ajax
+
+
+@*@{
+    if(ViewBag.Role == "admin")
+    { 
+        <a href="/Products/ImagesAdd" class="btn btn-outline-primary" style="margin-left: 15px;margin-top: 10px; text-decoration: none" >Добавить товар <span>+</span></a>
+
+    }
+    
+}*@
+<div class="end-flex">
+    <div class="filter-sort-container">
+    <div class="filter-sort">
+        <div class="sort">
+            <h3>Сортировать по:</h3>
+            <p>
+                <a asp-action="Index" asp-route-jsonfilter="@(Model.FilterViewModel.jsonfilter)" asp-route-sortOrder="@(Model.SortViewModel.BrandSort)">
+                    Brand <span></span>
+                </a>
+            </p>
+            <p>
+                <a asp-action="Index" asp-route-jsonfilter="@(Model.FilterViewModel.jsonfilter)" asp-route-sortOrder="@(Model.SortViewModel.PriceSort)">
+                    Price <span></span>
+                </a>
+
+            </p>
+            <p>
+                <a asp-action="Index" asp-route-jsonfilter="@(Model.FilterViewModel.jsonfilter)" asp-route-sortOrder="@(Model.SortViewModel.ModelSort)">
+                    Model <span></span>
+                </a>
+            </p>
+        </div>
+        <div class="filter">
+            <h3>Фильтровать по:</h3>
+              <form asp-action="Index" asp-controller="Home" method="post">
+                  <div class="form-group">
+                      <input type="hidden" name="jsonfilter" class="filter-form-index form-control" value="" />
+                    @foreach (string u in Model.FilterViewModel.Brand)
+                        {
+                             <input type="checkbox" class="checkbox-index" value="@u"/>
+                             <span>@u</span> <br/>
+                        }
+                  </div>
+
+                  
+
+                  <div class="form-group">
+                     <input type="submit" value="Фильтр" class="btn btn-outline-primary filter-to-index" />
+                  </div>
+              </form>
+        </div>
+    </div>
+    </div>
+ <div class="card-group">
+    
+    @foreach (Product u in Model.Product)
+    {
+
+        <div class="card" style="border-radius: 1.25rem;">
+            @{
+                 @if (User.Identity.IsAuthenticated){
+                    @if (User.Claims.ToArray()[4].Value == "admin")
+                    {
+                    <div class="card-edit-del">
+                        <a href="/Products/Edit/@u.Id" class="card-edit-del-inside">&#9998;</a>
+                        <a href="/Products/Delete/@u.Id" class="card-edit-del-inside"><img src="Images/DelBut.png" style="width:20px"></a>
+                    </div>
+
+                }
+                 }
+             }
+
+           
+            @foreach (Image q in u.Images)
+            {
+                <img src="Images/@u.Brand/@u.Model/@q.Name" class="card-img-top" value="@q.Name" alt="...">
+                ;
+                @if (1 > 0)
+                {
+                    break;
+                }
+            }
+
+            <div class="card-body">
+
+                <h5 class="card-title model">@u.Model</h5>
+                <p class="card-title brand">@u.Brand</p>
+                <p class="card-text"><a href="/Products/Details/@u.Id">@u.Description</a></p>
+            </div>
+            <div class="card-body-price">
+                <p class="card-title price">@u.Price ₽</p>
+                <a class="btn btn-outline-primary cart-go" data-id="@u.Id">Купить</a>
+            </div>
+        </div>
+    }
+ </div>
+ 
+</div>
+<div class="pag-cen">
+<page-link page-model="Model.PageViewModel" page-action="Index" 
+           page-url-jsonfilter="@(Model.FilterViewModel.jsonfilter)"
+           page-url-sortorder="@(Model.SortViewModel.Current)"></page-link>
+</div>
+

@@ -1,0 +1,54 @@
+﻿@model WEB_Shop_Ajax.Models.User
+
+@using WEB_Shop_Ajax.Models
+<div class="cart-user" >
+    <div id="cart_content" class="cart_content"></div>
+    <div class="div-clear-cart">
+        <button id="clear_cart" class="btn clear-cart btn-outline-primary">Очистить корзину</button>
+    </div>
+   
+</div>
+<div>
+    <button id="arrange" class="btn btn-outline-primary arrange" data-path="arrange">Оформить заказ</button>
+    
+        <div class="modal-overlay">
+            <div class="modal-iside" data-target="arrange">
+                <form asp-action="ArrangeOrder" name="ArrangeOrder" asp-controller="Account" method="post">
+                    <div class="form-group">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <input type="hidden" asp-for="Email" value="@User.Identity.Name" class="form-control" />
+                            <input type="hidden" asp-for="History" name="History" value="" class="form-control" />
+                        }
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UserFirstName" class="control-label">Имя</label>
+                        <input asp-for="UserFirstName" class="form-control" type="text" name="UserFirstName" id="UserFirstName" placeholder="Иван" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UserSurName" class="control-label">Фамилия</label>
+                        <input asp-for="UserSurName" class="form-control" type="text" name="UserSurName" id="UserSurName" placeholder="Иванов" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="HomeAdress" class="control-label">Адрес доставки</label>
+                        <input asp-for="HomeAdress" class="form-control" type="text" name="HomeAdress" id="HomeAdress" placeholder="г.Челябинск ул.Евтеева д.1 кв.1" />
+                    </div>
+                    <div class="form-group">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <input type="submit" value="Оформить" class="btn btn-primary ArrangeOrder" style="margin-top:10px" />
+                        }
+                        else
+                        {
+                            <a asp-controller="Account" asp-action="Login">Вход</a>
+                            <a asp-controller="Account" asp-action="Register">Регистрация</a>
+                        }
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    
+</div>
+
+

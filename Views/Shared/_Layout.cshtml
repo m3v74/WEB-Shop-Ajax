@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <title></title>
+    </head>
+    <body>
+
+        <header>
+
+            <div class="container">
+            <nav class="nav">
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round theme"></span>
+                </label>
+                
+                <a class="logo" asp-controller="Home" asp-action="Index">HOME</a>
+                <ul class="nav-list">
+                    <li class="nav-list-item">
+                        <a href="#" class="nav-list-link">One</a>
+                    </li>
+                    <li class="nav-list-item">
+                        <a href="#" class="nav-list-link">Two</a>
+                    </li>
+                     @if (User.Identity.IsAuthenticated){
+                    @if (User.Claims.ToArray()[4].Value == "admin")
+                    {
+                        <li class="nav-list-item">
+                            <a href="/Roles" class="nav-list-link">Roles</a>
+                        </li>
+                    }
+                     }
+                   
+                </ul>
+                @{
+     @if (User.Identity.IsAuthenticated){
+                    @if (User.Claims.ToArray()[4].Value == "admin")
+                    {
+        <a href="/Products/ImagesAdd" class="btn btn-outline-primary add-card">Добавить товар <span>+</span></a>
+
+    }
+     }
+    
+}
+                <a draggable="false" class="cart-href" href="/Products/Cart">&#128722; <span></span></a>
+                <div class="log-panel">
+                    
+                @if (User.Identity.IsAuthenticated)
+                {   
+                    <p style="color:lime">@User.Claims.ToArray()[4].Value <span>&nbsp;</span></p>
+                    <p>@User.Identity.Name</p>
+
+                    <form method="post" asp-controller="Account" asp-action="Logout">
+                        <input style="background-color: transparent; border: none; color: #032d42;" type="submit" value="Выход" />
+                    </form>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login">Вход</a>
+                    <a asp-controller="Account" asp-action="Register">Регистрация</a>
+                }
+                </div>
+            </nav>
+            </div>
+        </header>
+    
+    <div class="container" style="margin-top: 100px">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jsrender/jsrender.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

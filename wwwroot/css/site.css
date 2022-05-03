@@ -1,0 +1,552 @@
+/*_______________________________________________________Смена темы__________________________________________________________________*/
+:root {
+    --header-bg: whitesmoke;
+    --body-bg: #bbb1b136;
+    
+}
+
+:root[data-theme-name="dark"] {
+    --header-bg: #888;
+    --body-bg: radial-gradient(circle farthest-corner at 100px 5000px, #000, #373737);
+}
+
+/*_______________________________________________________Базовый шаблон__________________________________________________________________*/
+html {
+  font-size: 14px;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+a:hover {
+    color:coral;
+}
+
+
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background: var(--body-bg);
+    
+}
+.end-flex {
+    display: flex;
+    justify-content: space-between;
+}
+.pag-cen {
+    display: flex;
+    justify-content: center;
+}
+
+/*_______________________________________________________Header__________________________________________________________________*/
+header {
+    background-color: var(--header-bg);
+    border-bottom: 2px solid lightgray;
+    box-shadow: -8px -11px 17px rgb(68, 68, 68);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+/*Слайдер для темы*/
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+ /* Hide default HTML checkbox */
+.switch input {
+    display: none;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 17px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    }
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+/*Конец слайдера*/
+
+.add-card {
+    margin-left: 850px;
+    text-decoration: none;
+    position: absolute;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-size: 40px;
+    text-transform: uppercase; /*заглавные буквы*/
+    transition: opacity 0.28s; /*плавный переход для изменения прозрачности*/
+    color: #05374f8f;
+    text-decoration: none;
+}
+
+.logo:hover {
+    opacity: 0.7; /*параметр прозрачности*/
+    color: #00aeae91;
+}
+
+
+.nav-list {
+    display:flex;
+    align-items:center;
+    padding: 0;
+    margin-left: 50px;
+    list-style-type: none; /*убрать точки*/ 
+    margin-bottom: 0;
+}
+
+.nav-list-item:not(:first-of-type) { /*все кроме первого*/
+    margin-left: 10px;
+}
+
+.nav-list-link {
+    font-size: 20px;
+    color: #0c4a16c9;
+    text-decoration: none;
+    transition: opacity 0.28s, color 0.28s; /*плавный переход для изменения прозрачности*/
+}
+
+.nav-list-link:hover {
+    opacity: 0.7; /*параметр прозрачности*/
+    color: aqua;
+}
+.log-panel {
+    display: flex;
+    /*margin-left: auto;*/
+    margin-bottom: -14px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 240px;
+    color: #032d42;
+}
+
+.cart-href {
+    display: flex;
+    margin-left: auto;
+    font-size: 20px;
+    transition: opacity 0.15s;
+}
+.cart-href:hover {
+    opacity: 0.7;
+}
+.cart-href:active {
+    opacity: 0.5;
+}
+.cart-go {
+    position: relative;
+    top: 5rem;
+    padding: 1rem 2rem 1rem 2rem;
+    border-radius: 10px;
+}
+.card-title {
+    font-weight: bold;
+}
+
+.btn-outline-primary {
+    color: black;
+    border-color: coral;
+}
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: coral;
+    border-color: coral;
+}
+/*-----------------------------------------------Card-------------------------------------------------*/
+
+.card-group {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 30px 0;
+    margin-top: 20px;
+}
+.card {
+    width: 1000px;
+    flex-direction: row;
+    margin-bottom: 10px !important;
+    padding: 10px;
+    max-height: 260px;
+}
+
+
+.card-img-top {
+    height: 230px;
+    border-radius: 1.25rem;
+    width: 200px;
+    margin-left: 13px;
+}
+.card-text {
+    overflow: hidden;
+    height: 120px;
+    font-size: 13px;
+}
+.card-edit-del {
+    position: absolute;
+    flex-direction: column;
+    display: flex;
+}
+.price {
+    font-size: 40px;
+    font-weight: bold;
+    position: relative;
+    top: 3rem;
+    color: #382faa;
+}
+.card-body-price {
+    width:200px
+}
+.card-body {
+    width:600px
+}
+.arrange {
+    margin: 30px 0px 0 730px;
+}
+/*-----------------------------------------------Карусель-------------------------------------------------*/
+.carousel {
+    width: 460px;
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-inner {
+    width: 300px;
+    margin-right: -90px;
+}
+
+.carousel-indicators-child {
+    background: none !important;
+}
+
+.carousel-small-image {
+    border: 1px solid darkcyan;
+    border-radius: 10px;
+    padding: 1px;
+}
+
+/*-----------------------------------------------Картинки в Edit-------------------------------------------------*/
+.span-img-group {
+    display: flex;
+    gap: 30px;
+    padding: 1.3rem;
+    box-sizing: content-box;
+    margin-left: -20px;
+}
+img.image-edit-product {
+    width: 100px;
+}
+
+span.image-edit-product {
+    position: absolute;
+    right: 1px;
+    top: -4px;
+    padding: 0px 6px;
+    border: 2px solid #ff000091;
+    border-radius: 50%;
+    transition: all 0.2s;
+    cursor: pointer;
+    background-color: #EFEFEF;
+    font-size: 14px;
+    z-index: 1;
+}
+
+    span.image-edit-product:hover {
+        color: rgb(255, 255, 255);
+        background-color: #ff000091;
+    }
+
+.span-img {
+    position: relative;
+}
+/*-----------------------------------------------Корзина-------------------------------------------------*/
+.shopping_list tr {
+    border-width: 3px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 700px;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    font-size: 24px;
+    color: coral;
+}
+.shopping_list td {
+    width: 100px;
+    padding: 0px 10px;
+}
+.cart_content {
+    display: flex;
+    justify-content: center;
+}
+.plus {
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    color: coral;
+    font-weight: bolder;
+}
+.minus {
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    color: coral;
+    font-weight: bolder;
+}
+.clear-cart {
+    margin-top: 10px;
+}
+.cart-user {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.cart-img {
+    width: 30px;
+}
+
+
+/*-----------------------------------------------Сортировка и фильтрация-------------------------------------------------*/
+.sort {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.67);
+}
+.sort p a {
+    display:flex;
+}
+.sort p a span {
+    font-size: 20px;
+    padding: 0px 4px;
+    color: coral;
+}
+.filter-sort {
+    margin-top: 50px;
+    position: sticky;
+    top: 80px;
+}
+.filter {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.67);
+    margin-top: 20px;
+}
+
+/*----------------------------------------------Modal-------------------------------------------------*/
+
+.modal-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.modal-iside {
+    box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: #FFFFFF;
+    width: 920px;
+    padding: 55px 65px 50px 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    border-radius: 10px;
+}
+
+.modal-overlay--visible {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease-in-out;
+}
+
+.modal-iside--visible {
+    display: block;
+}
+.error {
+    color: red;
+}
+
+
+/*----------------------------------------------Адаптация к размерам окна-------------------------------------------------*/
+
+@media (max-width: 1400px) {
+    .card {
+        width: 800px;
+    }
+
+    .card-body-price {
+        width: 400px;
+    }
+    .add-card {
+        margin-left: 700px;
+    }
+
+}
+
+@media (max-width: 1200px) {
+    .add-card {
+        margin-left: 500px;
+    }
+    .card {
+        width: 600px;
+    }
+
+    .card-body-price {
+        width: 200px;
+    }
+    .price {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .add-card {
+        margin-left: 375px;
+        font-size: 0;
+
+    }
+    .add-card::before {
+        content: "\2795";
+        font-size: 10px;
+    }
+    .card {
+        width: 360px;
+    }
+    .price {
+        font-size: 20px;
+    }
+    .card-body-price {
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+    .card-img-top {
+        height: 130px;
+        width: 100px;
+    }
+    .cart-go {
+        top: 0;
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .add-card {
+        margin-left: 480px;
+    }
+    .card {
+        width: 280px;
+    }
+     .log-panel {
+        width: 90px;
+        flex-direction:column;
+    }
+    .log-panel p {
+        margin-bottom: -7px;
+    }
+    .cart-href {
+        margin-left: 0
+    }
+    .price {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 562px) {
+    .add-card {
+        margin-left: 420px;
+    }
+    .card {
+        width: 260px;
+    }
+
+    .sort,.filter {
+        width: 100px
+    }
+    .sort h3, .filter h3 {
+        font-size: 12px;
+    }
+    .card-text {
+        height: 60px
+    }
+    .card-img-top {
+        margin-left: 0;
+    }
+    .card-body {
+        padding: 10px 0;
+    }
+    
+    .nav-list {
+        margin-left: 0;
+    }
+}
+
